@@ -99,11 +99,11 @@ DATABASES = {
     # }
     'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mconline',
+        'NAME': 'mxonline',
         'HOST': 'localhost',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': 'hangjia!@#',
+        'PASSWORD': '123456',
     }
 }
 

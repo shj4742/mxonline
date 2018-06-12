@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.backends import ModelBackend
@@ -6,6 +7,7 @@ from django.views.generic.base import View
 from users.forms import LoginForm, RegisterForm
 from users.models import UserProfile
 from django.db.models import Q
+
 # Create your views here.
 
 class CustomBackend(ModelBackend):
@@ -49,4 +51,11 @@ class RegisterView(View):
     def post(self, request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
-            email =
+            user_name = request.POST.get('username')
+            pass_word = request.POST.get('password')
+            user_profile = UserProfile()
+            user_profile.username = user_name
+            user_profile.email = user_name
+            user_profile.password = make_password(pass_word)
+            user_profile.save
+
