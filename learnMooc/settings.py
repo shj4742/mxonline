@@ -73,7 +73,7 @@ ROOT_URLCONF = 'learnMooc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,13 +97,24 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-    'default':{
+    # self pc setting:
+    # 'default':{
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'mxonline',
+    #     'HOST': 'localhost',
+    #     'PORT': 3306,
+    #     'USER': 'root',
+    #     'PASSWORD': '123456',
+    # }
+
+    # work pc setting:
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mxonline',
+        'NAME': 'mconline',
         'HOST': 'localhost',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': '123456',
+        'PASSWORD': 'hangjia!@#',
     }
 }
 
@@ -152,3 +163,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
 # MEDIA_URL = '/static/' #这个是在浏览器上访问该上传文件的url的前缀
 
 # TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
+# email send Base setting:
+EMAIL_HOST = 'smtp.126.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'shj4742@126.com'
+EMAIL_HOST_PASSWORD = '74454yunxudenglu'
+EMAIL_USE_TLS = True
+EMAIL_FROM = 'shj4742@126.com'
