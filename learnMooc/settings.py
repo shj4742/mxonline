@@ -159,7 +159,8 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = '/collectstatics/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 # MEDIA_URL = '/static/' #这个是在浏览器上访问该上传文件的url的前缀
 
 # TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
