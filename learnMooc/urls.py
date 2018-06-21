@@ -20,6 +20,9 @@ from django.conf.urls import url, include
 # 静态页面展示
 from django.views.generic import TemplateView
 # 导入user.views
+from django.views.static import serve
+
+from learnMooc.settings import MEDIA_ROOT
 from organization.views import OrgListView
 from users.views import LoginView, ModifyPwdView
 from users.views import ActiveUserView
@@ -35,13 +38,16 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
+    # 验证码
     url(r'^captcha/', include('captcha.urls')),
     url(r'^active/(?P<active_code>.*)/$', ActiveUserView.as_view(), name='active'),
     url(r'^reset/(?P<reset_code>.*)/$', ResetPwdView.as_view(), name='reset'),
     url(r'^forget/$', ForgetPwdView.as_view(), name='forget_pwd'),
     url(r'^modify_pwd/$', ModifyPwdView.as_view(), name='modify_pwd'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
-    # 课程机构首页
-    url(r'^org_list/$', OrgListView.as_view(), name='org_list'),
+    # 课程机构
+    url(r'^org/', include('organization.urls', namespace='org')),
+    # 配置上传文件的访问路由
+    url(r'media/(?P<path>).*', serve, {'document_root': MEDIA_ROOT})
 
 ]

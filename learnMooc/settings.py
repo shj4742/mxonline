@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'organization',
     # 验证码
     'captcha',
+    # 分页模块
+    'pure_pagination',
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -81,6 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 配置media 中间件
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -172,3 +176,10 @@ EMAIL_HOST_USER = 'shj4742@126.com'
 EMAIL_HOST_PASSWORD = '74454yunxudenglu'
 EMAIL_USE_TLS = True
 EMAIL_FROM = 'shj4742@126.com'
+# 页面配置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}
