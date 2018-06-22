@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.views.generic.base import View
+
+from courses.models import Course
+from organization.models import CourseOrg
 from users.forms import LoginForm, RegisterForm, ForgetPwdForm, ModifyPwdForm
 from users.models import UserProfile, EmailVerifyRecord
 from django.db.models import Q
@@ -22,6 +25,12 @@ class CustomBackend(ModelBackend):
         except Exception as e:
             return None
 
+class IndexView(View):
+    """首页"""
+    def get(self, request):
+        all_orgs = CourseOrg.objects.all().order_by('-click_nums')[:15]
+        all_courses = Course.objects.all().order_by('-click_nums')[:6]
+        return render(request, 'index.html', {'all_orgs': all_orgs, 'all_courses': all_courses})
 
 class LoginView(View):
 

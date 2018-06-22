@@ -2,13 +2,15 @@
 from __future__ import unicode_literals
 from datetime import datetime
 from django.db import models
-from organization.models import CourseOrg
+from organization.models import CourseOrg, Teacher
+
 
 # Create your models here.
 
 
 class Course(models.Model):
     course_org = models.ForeignKey(CourseOrg, verbose_name=u'课程机构', null=True)
+    course_teacher = models.ForeignKey(Teacher, verbose_name=u'授课老师', null=True)
     name = models.CharField(max_length=50, verbose_name=u'课程')
     desc = models.CharField(max_length=300, verbose_name=u'课程描述')
     detail = models.TextField(verbose_name=u'课程详情')
@@ -23,6 +25,7 @@ class Course(models.Model):
     class Meta:
         verbose_name = u'课程'
         verbose_name_plural = verbose_name
+        ordering = ['-add_time']
 
     def __unicode__(self):
         return self.name

@@ -30,12 +30,13 @@ from users.views import RegisterView
 from users.views import ForgetPwdView
 from users.views import ResetPwdView
 from users.views import LogoutView
+from users.views import IndexView
 
 import captcha
 import xadmin
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^$', IndexView.as_view(), name='index'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
     # 验证码
@@ -47,6 +48,8 @@ urlpatterns = [
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     # 课程机构
     url(r'^org/', include('organization.urls', namespace='org')),
+    # 课程
+    url(r'^course/', include('courses.urls', namespace='course')),
     # 配置上传文件的访问路由
     url(r'media/(?P<path>).*', serve, {'document_root': MEDIA_ROOT})
 
